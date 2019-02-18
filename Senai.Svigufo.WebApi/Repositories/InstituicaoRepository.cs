@@ -3,34 +3,33 @@ using Senai.Svigufo.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-
+    
 namespace Senai.Svigufo.WebApi.Repositories
 {
     public class InstituicaoRepository : IInstituicaoRepository
     {
         private readonly string StringConexao = "Data Source=.\\SQLEXPRESS;Initial Catalog=SENAI_SVIGUFO;User ID = sa; Password = 132;";
 
-        public void Alterar(int ID)
+        public void Alterar(InstituicaoDomain ITD, int ID)
         {
-            using (SqlConnection con = new SqlConnection())
+            using (SqlConnection con = new SqlConnection(StringConexao  ))
             {
-                InstituicaoDomain ITD = new InstituicaoDomain();
-                string Alterar = "UPDATE INSTITUICOES SET ID = ID, NOME_FANTASIA = @A, RAZAO_SOCIAL = @B, LOGRADOURO = @C, UF = @D, CIDADE = @E, CEP = @ F, CNPJ = @G FROM INSTITUICOES WHERE ID = @ID";
+                InstituicaoDomain instituicaoDomain = new InstituicaoDomain();
+                string Alterar = "UPDATE INSTITUICOES SET ID = ID, NOME_FANTASIA = @A, RAZAO_SOCIAL = @B, LOGRADOURO = @C, UF = @D, CIDADE = @E, CEP = @ F, CNPJ = @G WHERE ID = @ID";
                 SqlCommand CMD = new SqlCommand(Alterar, con);
                 CMD.Parameters.AddWithValue("@ID", ID);
-                CMD.Parameters.AddWithValue("@A", ITD.NomeFantasia);
-                CMD.Parameters.AddWithValue("@B", ITD.RazaoSocial);
-                CMD.Parameters.AddWithValue("@C", ITD.Logradouro);
-                CMD.Parameters.AddWithValue("@D", ITD.Uf);
-                CMD.Parameters.AddWithValue("@E", ITD.Cidade);
-                CMD.Parameters.AddWithValue("@F", ITD.CEP);
-                CMD.Parameters.AddWithValue("@G", ITD.CNPJ);
+                CMD.Parameters.AddWithValue("@A", instituicaoDomain.NomeFantasia);
+                CMD.Parameters.AddWithValue("@B", instituicaoDomain.RazaoSocial);
+                CMD.Parameters.AddWithValue("@C", instituicaoDomain.Logradouro);
+                CMD.Parameters.AddWithValue("@D", instituicaoDomain.Uf);
+                CMD.Parameters.AddWithValue("@E", instituicaoDomain.Cidade);
+                CMD.Parameters.AddWithValue("@F", instituicaoDomain.CEP);
+                CMD.Parameters.AddWithValue("@G", instituicaoDomain.CNPJ);
                 con.Open();
                 CMD.ExecuteNonQuery();
             }
         }
+
 
         public void Excluir(int ID)
         {
@@ -51,7 +50,7 @@ namespace Senai.Svigufo.WebApi.Repositories
             {
                 string SelectID = "SELECT NOME_FANTASIA, RAZAO_SOCIAL, LOGRADOURO, UF, CIDADE, CEP, CNPJ FROM INSTITUICOES WHERE ID = @ID";
                 SqlCommand CMD = new SqlCommand(SelectID, con);
-                CMD.Parameters.AddWithValue("@ID, @NOME_FANTASIA, @RAZAO_SOCIAL, @LOGRADOURO, @UF, @CIDADE, @CEP, @CNPJ", ID);
+                CMD.Parameters.AddWithValue("@NOME_FANTASIA, @RAZAO_SOCIAL, @LOGRADOURO, @UF, @CIDADE, @CEP, @CNPJ", ID);
                 con.Open();
                 CMD.ExecuteReader();
             }
@@ -89,6 +88,7 @@ namespace Senai.Svigufo.WebApi.Repositories
                 using (SqlCommand CMD = new SqlCommand(Query, con))
                 {
                     SQLRD = CMD.ExecuteReader();
+                    if (SQLRD.HasRows) { 
                     while (SQLRD.Read())
                     {
                         InstituicaoDomain ITD = new InstituicaoDomain()
@@ -103,10 +103,11 @@ namespace Senai.Svigufo.WebApi.Repositories
                             CEP = (SQLRD["CEP"]).ToString()
                         };
                         LID.Add(ITD);
+            return LID;       
                     }
+                    } return null;
                 }
             }
-            return LID;       
         }
     }
 }

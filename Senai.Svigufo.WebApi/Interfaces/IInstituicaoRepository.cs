@@ -11,7 +11,7 @@ namespace Senai.Svigufo.WebApi.Interfaces
         List<InstituicaoDomain> Listar();
         void Gravar(InstituicaoDomain ITD);
         void Excluir(int ID);
-        void Alterar(int ID);
+        void Alterar(InstituicaoDomain ITD, int ID);
         InstituicaoDomain GetByID(int ID);
     }
 }
