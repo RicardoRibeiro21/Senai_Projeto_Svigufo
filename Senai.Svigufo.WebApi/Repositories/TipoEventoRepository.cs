@@ -13,7 +13,7 @@ namespace Senai.Svigufo.WebApi.Repositories
         //Criando string de conexão com o banco de dados
         private string StringConexao = "Data Source=.\\sqlexpress;Initial Catalog=SENAI_SVIGUFO;Persist Security Info=True;User ID=sa;Password=132";
 
-        public void Alterar(TipoEventosDomain tipoEvento)
+        public void Alterar(TipoEventoDomain tipoEvento)
         {
             using(SqlConnection con = new SqlConnection(StringConexao))
             {
@@ -26,7 +26,7 @@ namespace Senai.Svigufo.WebApi.Repositories
             }
         }
 
-        public void Cadastrar(TipoEventosDomain tipoEvento)
+        public void Cadastrar(TipoEventoDomain tipoEvento)
         {
             using(SqlConnection con = new SqlConnection(StringConexao))
             {
@@ -53,9 +53,9 @@ namespace Senai.Svigufo.WebApi.Repositories
             }
         }
 
-        List<TipoEventosDomain> ITipoEventoRepository.Listar()
+        List<TipoEventoDomain> ITipoEventoRepository.Listar()
         {
-            List<TipoEventosDomain> tiposEventos = new List<TipoEventosDomain>();
+            List<TipoEventoDomain> tiposEventos = new List<TipoEventoDomain>();
 
             
             using (SqlConnection con = new SqlConnection(StringConexao))
@@ -76,7 +76,7 @@ namespace Senai.Svigufo.WebApi.Repositories
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        TipoEventosDomain tipoEvento = new TipoEventosDomain()
+                        TipoEventoDomain tipoEvento = new TipoEventoDomain()
                         {
                             Id = Convert.ToInt32(rdr["Id"]),
                             Nome = rdr["DESCRICAO"].ToString()};

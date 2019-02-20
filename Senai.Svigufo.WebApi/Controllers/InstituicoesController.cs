@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Svigufo.WebApi.Domains;
@@ -12,6 +13,7 @@ namespace Senai.Svigufo.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class InstituicoesController : ControllerBase
     {
@@ -25,6 +27,7 @@ namespace Senai.Svigufo.WebApi.Controllers
         }
 
         [HttpGet]
+       
         public IEnumerable<InstituicaoDomain> Get()
         {
             return IIR.Listar();

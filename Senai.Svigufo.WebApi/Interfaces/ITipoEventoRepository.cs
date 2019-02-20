@@ -10,11 +10,11 @@ namespace Senai.Svigufo.WebApi.Interfaces
         /// Lista todos os tipos de eventos 
         /// </summary>
         /// <returns>Retorna uma lista de eventos</returns>
-        List<TipoEventosDomain> Listar();
+        List<TipoEventoDomain> Listar();
 
-        void Cadastrar(TipoEventosDomain tipoEvento);
+        void Cadastrar(TipoEventoDomain tipoEvento);
 
-        void Alterar(TipoEventosDomain tipoEvento);
+        void Alterar(TipoEventoDomain tipoEvento);
         void Deletar(int ID);
     }
 }

@@ -12,11 +12,11 @@ namespace Senai.Svigufo.WebApi.Controllers
     public class TiposEventosController : ControllerBase
     {
         //Gerando Lista de Tipos Eventos
-        List<TipoEventosDomain> tiposEventos = new List<TipoEventosDomain>()
+        List<TipoEventoDomain> tiposEventos = new List<TipoEventoDomain>()
         {
-            new TipoEventosDomain{ Id = 1, Nome = "Tecnologia"},
-            new TipoEventosDomain{ Id = 2, Nome = "Redes"},
-            new TipoEventosDomain{ Id = 3, Nome = "Games"}
+            new TipoEventoDomain{ Id = 1, Nome = "Tecnologia"},
+            new TipoEventoDomain{ Id = 2, Nome = "Redes"},
+            new TipoEventoDomain{ Id = 3, Nome = "Games"}
 
         };
         //Declarando que a lista será carregada do repositório
@@ -31,7 +31,7 @@ namespace Senai.Svigufo.WebApi.Controllers
         /// </summary>
         /// <returns>Lista de Eventos</returns>
         [HttpGet]
-        public IEnumerable<TipoEventosDomain> Get()
+        public IEnumerable<TipoEventoDomain> Get()
         {
             return tipoEventoRepository.Listar();
         }
@@ -45,7 +45,7 @@ namespace Senai.Svigufo.WebApi.Controllers
         public IActionResult GetById(int id)
         {
             //Verificando se o id passsado existe no banco de dados
-            TipoEventosDomain tipoEvento = tiposEventos.Find(x => x.Id == id);
+            TipoEventoDomain tipoEvento = tiposEventos.Find(x => x.Id == id);
             if (tipoEvento == null)
             {
                 //Se o objeto não foi encontrado...
@@ -55,10 +55,10 @@ namespace Senai.Svigufo.WebApi.Controllers
             return Ok(tipoEvento);
         }
         [HttpPost] //Inserir dados 
-        public IActionResult Post(TipoEventosDomain tipoEventoRecebido)
+        public IActionResult Post(TipoEventoDomain tipoEventoRecebido)
         {
             //Inserindo um novo tipo de evento, retornando a lista
-            tiposEventos.Add(new TipoEventosDomain
+            tiposEventos.Add(new TipoEventoDomain
             {
                 Id = tiposEventos.Count + 1,
                 Nome = tipoEventoRecebido.Nome
@@ -98,7 +98,7 @@ namespace Senai.Svigufo.WebApi.Controllers
 
 
         [HttpPut] //Verbo para Atualizar 
-        public IActionResult Put(TipoEventosDomain tipoEventoRecebido)
+        public IActionResult Put(TipoEventoDomain tipoEventoRecebido)
         {
             tipoEventoRepository.Alterar(tipoEventoRecebido);
             return Ok(tiposEventos);
@@ -112,7 +112,7 @@ namespace Senai.Svigufo.WebApi.Controllers
         public IActionResult GetByName(string nome)
         {
             //Verificando se o nome passsado existe no banco de dados
-            TipoEventosDomain tipoEvento = tiposEventos.Find(x => x.Nome == nome);
+            TipoEventoDomain tipoEvento = tiposEventos.Find(x => x.Nome == nome);
             if (tipoEvento == null)
             {
                 //Se o objeto não foi encontrado...

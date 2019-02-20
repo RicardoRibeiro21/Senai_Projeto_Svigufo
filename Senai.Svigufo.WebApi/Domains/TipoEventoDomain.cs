@@ -3,7 +3,7 @@
     /// <summary>
     /// Classe que representa os tipos de eventos 
     /// </summary>
-    public class TipoEventosDomain
+    public class TipoEventoDomain
     {
         public int Id { get; set; }
         public string Nome { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Senai.Svigufo.WebApi
@@ -24,6 +25,37 @@ namespace Senai.Svigufo.WebApi
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
+            //SENTA QUE LÁ VEM MERDA
+            services.AddAuthentication(
+                options =>
+                {
+                    options.DefaultAuthenticateScheme = "JwtBearer";
+                    options.DefaultChallengeScheme = "JwtBearer";
+                }
+                ).AddJwtBearer("JwtBearer", options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        //Quem esta solicitando
+                        ValidateIssuer = true,
+                        //Quem está validando
+                        ValidateAudience = true,
+                        //Definindo o tempo de  expiração
+                        ValidateLifetime = true,
+                        //Forma de criptografar
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("svigufo-chave-authenticacao")),
+                        //Definindo o tempo
+                        ClockSkew = TimeSpan.FromMinutes(38),
+                        //Nome do Issuer, de onde esta vindo
+                        ValidIssuer = "Svigufo.WebApi",
+                        //Nome da Audience, de onde está vindo
+                        ValidAudience = "Svigufo.WebApi"
+
+                    };
+                }
+                //Pode descansar agora meu rapaz..
+                );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +73,8 @@ namespace Senai.Svigufo.WebApi
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 });
+
+                app.UseAuthentication();
 
                 app.UseMvc();
             }
