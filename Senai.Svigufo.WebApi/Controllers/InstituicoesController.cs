@@ -39,7 +39,7 @@ namespace Senai.Svigufo.WebApi.Controllers
             try
             {
                 IIR.Gravar(ITD);
-                return Ok(ITD);
+                return Ok(IIR);
             }
             catch
             {

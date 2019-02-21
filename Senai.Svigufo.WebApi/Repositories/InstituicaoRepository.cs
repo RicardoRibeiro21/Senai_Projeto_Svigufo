@@ -64,6 +64,7 @@ namespace Senai.Svigufo.WebApi.Repositories
             {
                 string Insert = "INSERT INTO INSTITUICOES (NOME_FANTASIA, RAZAO_SOCIAL, LOGRADOURO, UF, CIDADE, CEP, CNPJ) VALUES (@NOME_FANTASIA, @RAZAO_SOCIAL, @LOGRADOURO, @UF, @CIDADE, @CEP, @CNPJ)";
                 SqlCommand CMD = new SqlCommand(Insert, con);
+                con.Open();
                 CMD.Parameters.AddWithValue("@NOME_FANTASIA", ITD.NomeFantasia);
                 CMD.Parameters.AddWithValue("@RAZAO_SOCIAL", ITD.RazaoSocial);
                 CMD.Parameters.AddWithValue("@LOGRADOURO", ITD.Logradouro);
@@ -71,7 +72,6 @@ namespace Senai.Svigufo.WebApi.Repositories
                 CMD.Parameters.AddWithValue("@CIDADE", ITD.Cidade);
                 CMD.Parameters.AddWithValue("@CEP", ITD.CEP);
                 CMD.Parameters.AddWithValue("@CNPJ", ITD.CNPJ);
-                con.Open();
                 CMD.ExecuteNonQuery();
             }
         }
