@@ -11,7 +11,7 @@ namespace Senai.Svigufo.WebApi.Repositories
     public class TipoEventoRepository : ITipoEventoRepository
     {
         //Criando string de conexão com o banco de dados
-        private string StringConexao = "Data Source=.\\sqlexpress;Initial Catalog=SENAI_SVIGUFO;Persist Security Info=True;User ID=sa;Password=132";
+        private string StringConexao = "Data Source=.\\SQLEXPRESS; initial catalog=SENAI_SVIGUFO; Persist Security Info=True; user ID=sa;Password=132";
 
         public void Alterar(TipoEventoDomain tipoEvento)
         {
@@ -30,7 +30,7 @@ namespace Senai.Svigufo.WebApi.Repositories
         {
             using(SqlConnection con = new SqlConnection(StringConexao))
             {
-                string QueryaSerExecutada = "INSERT INTO TIPO_EVENTOS (DESCRICAO) VALUES (@DESCRICAO)";
+                string QueryaSerExecutada = "INSERT INTO TIPOS_EVENTOS (DESCRICAO) VALUES (@DESCRICAO)";
                 SqlCommand cmd = new SqlCommand(QueryaSerExecutada, con);
                 //Passa o valor do Parâmetro
                 cmd.Parameters.AddWithValue("@DESCRICAO", tipoEvento.Nome);
@@ -53,19 +53,20 @@ namespace Senai.Svigufo.WebApi.Repositories
             }
         }
 
-        List<TipoEventoDomain> ITipoEventoRepository.Listar()
+    
+        public List<TipoEventoDomain> Listar()
         {
             List<TipoEventoDomain> tiposEventos = new List<TipoEventoDomain>();
 
-            
+
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 //Declara a instrução a ser executada
                 string QueryaSerExecutada = "SELECT ID, DESCRICAO FROM TIPOS_EVENTOS";
-                
+
                 //Abrindo o banco de dados
                 con.Open();
-                
+
                 //Declaro um SqlDataReader para percorrer a lista
                 SqlDataReader rdr;
 
@@ -79,14 +80,16 @@ namespace Senai.Svigufo.WebApi.Repositories
                         TipoEventoDomain tipoEvento = new TipoEventoDomain()
                         {
                             Id = Convert.ToInt32(rdr["Id"]),
-                            Nome = rdr["DESCRICAO"].ToString()};
-                       
-                    tiposEventos.Add(tipoEvento);
+                            Nome = rdr["DESCRICAO"].ToString()
                         };
-                    }
+
+                        tiposEventos.Add(tipoEvento);
+                    };
                 }
-                return tiposEventos;
             }
+            return tiposEventos;
         }
+
+    }
     }
 

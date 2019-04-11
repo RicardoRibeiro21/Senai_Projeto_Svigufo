@@ -46,6 +46,7 @@ namespace Senai.Svigufo.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, EventoDomain evento)
         {

@@ -10,7 +10,7 @@ namespace Senai.Svigufo.WebApi.Repositories
 {
     public class EventoRepository : IEventoRepository
     {
-        private string StringConexao = "Data Source=.\\sqlexpress;Initial Catalog=SENAI_SVIGUFO;Persist Security Info=True;User ID=sa;Password=132";
+        private string StringConexao = "Data Source=.\\SqlExpress;Initial Catalog=SENAI_SVIGUFO;Persist Security Info=True; user ID=sa;Password=132";
 
         public void Cadastrar(EventoDomain evento)
         {

@@ -31,7 +31,6 @@ namespace Senai.Svigufo.WebApi.Controllers
                     {
                         mensagem = "Email ou senha inválido"
                     });
-
                 //SENTA QUE LÁ VEM MERDA 2.0
                 var claims = new[]
                 {

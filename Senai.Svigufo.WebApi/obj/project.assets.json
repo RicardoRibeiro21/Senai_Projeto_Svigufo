@@ -12714,11 +12714,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\47575406808\\Desktop\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\Senai.Svigufo.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\47575406808\\Desktop\\Sprints\\Sprint2\\Exercicios\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\Senai.Svigufo.WebApi.csproj",
       "projectName": "Senai.Svigufo.WebApi",
-      "projectPath": "C:\\Users\\47575406808\\Desktop\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\Senai.Svigufo.WebApi.csproj",
+      "projectPath": "C:\\Users\\47575406808\\Desktop\\Sprints\\Sprint2\\Exercicios\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\Senai.Svigufo.WebApi.csproj",
       "packagesPath": "C:\\Users\\47575406808\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\47575406808\\Desktop\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\obj\\",
+      "outputPath": "C:\\Users\\47575406808\\Desktop\\Sprints\\Sprint2\\Exercicios\\senai svigufo\\Senai.Svigufo.WebApi\\Senai_Projeto_Svigufo\\Senai.Svigufo.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
